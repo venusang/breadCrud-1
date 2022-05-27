@@ -13,9 +13,11 @@ function Show({ bread }) {
         gluten
       </p>
       <img src={bread.image} alt={bread.name} />
-      <li>
-        <a href="/breads">Go Home</a>
-      </li>
+      <div className="backButton">
+        <a href="/breads">
+          <button>Go back to the index</button>
+        </a>
+      </div>
     </Default>
   );
 }
