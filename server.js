@@ -5,9 +5,13 @@ require("dotenv").config();
 const PORT = process.env.PORT;
 const app = express();
 
+// DEPENDENCIES
+const methodOverride = require("method-override");
+
 // MIDDLEWARE
 app.use(express.static("public")); // Exposing the public folder to the client
 app.use(express.urlencoded({ extended: true })); // Encoding your requests so they are Javascript formatted
+app.use(methodOverride('_method'))
 app.set("views", __dirname + "/views");
 app.set("view engine", "jsx");
 app.engine("jsx", require("express-react-views").createEngine()); // Allowing your server to read your views folder and the jsx files inside of them
