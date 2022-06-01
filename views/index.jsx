@@ -2,13 +2,6 @@ const React = require("react");
 const Default = require("./layouts/Default");
 
 function Index({ breads }) {
-  //   console.log("--------------------");
-  //   // FOCUS HERE
-  //   console.log(breads[0].name);
-
-  //   // STOP FOCUS HERE
-  //   console.log("--------------------");
-
   return (
     <Default>
       <h2>Index Page For the bread</h2>

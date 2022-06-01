@@ -6,11 +6,11 @@ const PORT = process.env.PORT;
 const app = express();
 
 // MIDDLEWARE
-app.use(express.static("public"));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public")); // Exposing the public folder to the client
+app.use(express.urlencoded({ extended: true })); // Encoding your requests so they are Javascript formatted
 app.set("views", __dirname + "/views");
 app.set("view engine", "jsx");
-app.engine("jsx", require("express-react-views").createEngine());
+app.engine("jsx", require("express-react-views").createEngine()); // Allowing your server to read your views folder and the jsx files inside of them
 
 // Routes
 app.get("/", (req, res) => {
