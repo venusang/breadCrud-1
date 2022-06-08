@@ -33,16 +33,6 @@ breads.get("/:id", (req, res) => {
   Bread.findById(req.params.id).then((foundBread) => {
     res.render("Show", { bread: foundBread });
   });
-  // if (Bread[req.params.arrayIndex]) {
-  //   res.render("Show", {
-  //     bread: Bread[req.params.arrayIndex],
-  //     index: req.params.arrayIndex,
-  //   });
-  // } else {
-  //   res.render("404", {
-  //     arrayIndex: req.params.arrayIndex,
-  //   });
-  // }
 });
 
 // CREATE
