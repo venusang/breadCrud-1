@@ -21,17 +21,17 @@ breads.get("/new", (req, res) => {
 });
 
 // EDIT
-breads.get("/:indexArray/edit", (req, res) => {
+breads.get("/:id/edit", (req, res) => {
   res.render("edit", {
-    bread: Bread[req.params.indexArray],
-    index: req.params.indexArray,
+    bread: Bread[req.params.id],
+    index: req.params.id,
   });
 });
 
 // SHOW
 breads.get("/:id", (req, res) => {
   Bread.findById(req.params.id).then((foundBread) => {
-    res.render("Show", { bread: foundBread });
+    res.render("Show", { bread: foundBread, id: req.params.id });
   });
 });
 
@@ -52,20 +52,21 @@ breads.post("/", (req, res) => {
 });
 
 // UPDATE
-breads.put("/:arrayIndex", (req, res) => {
+breads.put("/:id", (req, res) => {
   if (req.body.hasGluten === "on") {
     req.body.hasGluten = true;
   } else {
     req.body.hasGluten = false;
   }
-  Bread[req.params.arrayIndex] = req.body;
-  res.redirect(`/breads/${req.params.arrayIndex}`);
+  Bread[req.params.id] = req.body;
+  res.redirect(`/breads/${req.params.id}`);
 });
 
 // DELETE
-breads.delete("/:indexArray", (req, res) => {
+breads.delete("/:id", (req, res) => {
   console.log("did this do anything");
-  Bread.splice(req.params.indexArray, 1);
+  Bread.findByIdAndDelete(req.params.id);
+  Bread.splice(req.params.id, 1);
   res.status(303).redirect("/breads");
 });
 
