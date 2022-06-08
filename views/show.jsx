@@ -1,7 +1,7 @@
 const React = require("react");
 const Default = require("./layouts/Default");
 
-function Show({ bread, index }) {
+function Show({ bread, id }) {
   console.log(bread.name);
   return (
     <Default>
@@ -14,17 +14,17 @@ function Show({ bread, index }) {
       </p>
       <img src={bread.image} alt={bread.name} />
 
-      <form action={`/breads/${index}?_method=DELETE`} method="POST">
+      <form action={`/breads/${id}?_method=DELETE`} method="POST">
         <input type="submit" value="DELETE" />
       </form>
 
-      <a href={`/breads/${index}/edit`}>
+      <a href={`/breads/${id}/edit`}>
         <button>Edit</button>
       </a>
 
       <div className="backButton">
         <a href="/breads">
-          <button>Go back to the index</button>
+          <button>Go back to the bread list page</button>
         </a>
       </div>
     </Default>
