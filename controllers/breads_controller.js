@@ -22,10 +22,14 @@ breads.get("/new", (req, res) => {
 
 // EDIT
 breads.get("/:id/edit", (req, res) => {
-  res.render("edit", {
-    bread: Bread[req.params.id],
-    index: req.params.id,
-  });
+  Bread.findById(req.params.id)
+    .then(foundBread => {
+      res.render("edit", {
+        bread: foundBread,
+        id: req.params.id,
+      });
+    });
+
 });
 
 // SHOW
@@ -58,8 +62,11 @@ breads.put("/:id", (req, res) => {
   } else {
     req.body.hasGluten = false;
   }
-  Bread[req.params.id] = req.body;
-  res.redirect(`/breads/${req.params.id}`);
+  Bread.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .then(updatedBread => {
+      console.log('updatedBread', updatedBread);
+      res.redirect(`/breads/${req.params.id}`);
+    });
 });
 
 // DELETE
