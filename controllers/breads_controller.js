@@ -1,7 +1,7 @@
 const express = require("express");
 const breads = express.Router();
 const Bread = require("../models/bread.js");
-
+const Baker = require('../models/baker.js');
 
 // INDEX
 breads.get("/", (req, res) => {
@@ -18,19 +18,33 @@ breads.get("/", (req, res) => {
 
 // NEW
 breads.get("/new", (req, res) => {
-  res.render("new");
+  Baker.find()
+    .then(foundBakers => {
+      res.render('new', {
+        bakers: foundBakers
+      })
+    });
 });
 
 // EDIT
-breads.get("/:id/edit", (req, res) => {
-  Bread.findById(req.params.id)
-    .then(foundBread => {
-      res.render("edit", {
-        bread: foundBread,
-        id: req.params.id,
-      });
+breads.get("/:id/edit", async (req, res) => {
+  let bakers;
+  await Baker.find()
+    .then(foundBakers => {
+      bakers = foundBakers
     });
 
+  let bread;
+  await Bread.findById(req.params.id)
+    .then(foundBread => {
+      bread = foundBread;
+    });
+
+  await res.render("edit", {
+    bread,
+    id: req.params.id,
+    bakers,
+  });
 });
 
 // DATA/SEED

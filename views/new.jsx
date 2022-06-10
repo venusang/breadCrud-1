@@ -1,18 +1,19 @@
 const React = require("react");
 const Default = require("./layouts/Default");
 
-function New() {
+function New({ bakers }) {
   return (
     <Default>
       <h2>Add a new bread</h2>
       <form action="/breads" method="POST">
         <label htmlFor="baker">Baker</label>
         <select name="baker" id="baker">
-          <option value="Jackie">Jackie</option>
-          <option value="Liam">Liam</option>
-          <option value="Mama">Mama</option>
+          {bakers.map((baker) => {
+            return (
+              <option value={baker.id} key={baker.id}>{baker.name}</option>
+            )
+          })}
         </select>
-
         <label htmlFor="name">Name</label>
         <input type={"text"} name={"name"} id={"id"} required />
         <label htmlFor="image">Image</label>
