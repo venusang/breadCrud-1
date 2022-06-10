@@ -16,6 +16,14 @@ function Edit({ bread, id }) {
         />
         <label htmlFor="image">Image</label>
         <input type="text" name="image" id="image" defaultValue={bread.image} />
+
+        <label htmlFor="baker">Baker</label>
+        <select name="baker" id="baker" defaultValue={bread.baker}>
+          <option value="Jackie">Jackie</option>
+          <option value="Liam">Liam</option>
+          <option value="Mama">Mama</option>
+        </select>
+
         <label htmlFor="hasGluten">Has Gluten?</label>
         <input
           type="checkbox"
